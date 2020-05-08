@@ -2,6 +2,8 @@ import re
 from datetime import datetime
 from random import randint
 
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 from django.views import generic
 from django.views.generic import ListView, FormView, DetailView, DeleteView, CreateView, UpdateView, TemplateView
 from django.db import models

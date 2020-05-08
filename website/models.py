@@ -4,6 +4,8 @@ from django.utils import timezone
 import string, random
 from django.utils.encoding import force_text
 from stdimage import StdImageField, JPEGField
+from storages.backends.s3boto3 import S3Boto3Storage
+from django.conf import settings
 
 # Defines the options for record formats
 FORMATS = (
@@ -30,7 +32,7 @@ MONTHS = (
 
 class Record(models.Model): # Creates the Record table
     recordName = models.CharField(max_length=865) # Standard character field (with maximum length of 865)
-    record_cover = StdImageField(upload_to='images/', variations={'thumbnail': {'width': 550, 'height': 550}} ) # Image field process' the image so a thumbnail of 550x550px is created
+    record_cover = StdImageField(storage=PublicMediaStorage(), variations={'thumbnail': {'width': 550, 'height': 550}} ) # Image field process' the image so a thumbnail of 550x550px is created
     record_format = models.CharField(max_length=7, choices=FORMATS, default='vinyl') # Choices as defined above
     artist = models.CharField(max_length=150)
     price = models.DecimalField(decimal_places=2, max_digits=5) # Creates the price field with max of 999.99
