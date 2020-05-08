@@ -13,7 +13,7 @@ import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.abspath(file))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,6 +21,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(file))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'hzpe55l6azj)6*%-l+=3qx7j#3z+tkqvi!7ydf*x_ucdr!biyn'
+import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'hzpe55l6azj)6*%-l+=3qx7j#3z+tkqvi!7ydf*x_ucdr!biyn')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -31,7 +32,7 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES = { 'default': dj_database_url.config() }
 
-ALLOWED_HOSTS = ['glacial-sea-08239.herokuapp.com',]
+ALLOWED_HOSTS = ['vinylwebsiteproject1.herokuapp.com',]
 
 # Application definition
 
@@ -146,16 +147,13 @@ EMAIL_HOST_PASSWORD = 'vvuhpepxgwjjtynz' # Google generated app password
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-os.path.join(BASE_DIR, 'static_collected'),
-)
+STATIC_URL = '/static/' # Gives django the root to the static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/' # Re-directs the user away from admin page to the home page after logging out
 
 MEDIA_URL = '/media/' # Gives django the link to media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 django_heroku.settings(locals())
