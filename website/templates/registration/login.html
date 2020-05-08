@@ -1,0 +1,31 @@
+{% extends "website/layout.html" %}
+{% block title %}
+    Login
+{% endblock %}
+{% block content %}
+<div class="card" style="max-width: 22rem;">
+    <h5 class="card-header elegant-color white-text text-center py-4">
+        <strong>Sign in</strong>
+      </h5>
+    <div class="card-body">
+        <form method="post" class="text-center border border-light p-5" action="">
+        <!-- Loads in pre-made django login form (knows from name of html page) -->
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            </div>
+        {% endfor %}
+        <!-- Displays set error message in red when form doesn't validate successfully -->
+        {% if form.errors %}
+            <p style="color: red">Your username and password didn't match. Please try again.</p>
+        {% endif %}
+            <!-- Buttons to login, sign up button in case of no account and reset forgotten password -->
+            <input type="submit" value="Login" class = "btn btn-success">
+            <p> No account?<a href="{% url 'signup' %}"> Register</a></p>
+            <p> Forgot Password?<a href="{% url 'password_reset' %}"> Reset</a></p>
+        </form>
+    </div>
+</div>
+{% endblock %}
