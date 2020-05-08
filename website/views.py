@@ -17,7 +17,7 @@ from django.db.models import Q
 from django.http import HttpResponse, Http404, HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404, HttpResponseRedirect
 
-from chartjs.views.lines import BaseLineChartView, BasePieChartView
+from chartjs.views.lines import BaseLineChartView
 
 
 class HomeListView(TemplateView):
@@ -168,7 +168,7 @@ class LineChartJSONView(BaseLineChartView):
             listData[1].append(avgData)
         return listData
 
-class PieChartJSONView(BasePieChartView):
+class PieChartJSONView(BaseLineChartView):
     template_name = 'website/stats.html'
     model = Record
 
