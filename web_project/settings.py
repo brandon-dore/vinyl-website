@@ -147,8 +147,8 @@ EMAIL_HOST_PASSWORD = 'vvuhpepxgwjjtynz' # Google generated app password
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
-STATIC_URL = '/static/' # Gives django the root to the static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/' # Re-directs the user away from admin page to the home page after logging out
